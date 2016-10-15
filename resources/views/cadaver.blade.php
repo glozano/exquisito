@@ -1,20 +1,11 @@
-<html lang="es">
-<head>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Special+Elite" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/typed.js"></script>
-    <title>exquisito</title>
-</head>
+@extends('layouts.app')
 
-<body>
-    <h1>
-        <a href="{{route('cadaveres')}}"><</a>
-        .
-        <a id="ver-escena-boton">ver escena</a>
-    </h1>
+@section('header')
+<h1>{{$cadaver->titulo}}</h1>
+@endsection
+
+@section('content')
     <div class="wrapper center container">
-        <h1>{{$cadaver->titulo}}</h1>
         @if ($ultimoHueso)
         <div class="wrapper center container">
             <div id="mi-ultimo-hueso">
@@ -80,5 +71,4 @@
     });
 </script>
 
-</html>
-
+@endsection

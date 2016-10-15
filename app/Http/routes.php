@@ -61,9 +61,5 @@ Route::get('/escena/{id}', function ($id,Request $request){
 
 })->name('escena');
 
-/**
- * Delete Task
- */
-//Route::delete('/task/{task}', function (Task $task) {
-    //
-//});
+Route::auth();
+
