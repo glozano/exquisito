@@ -1,6 +1,6 @@
 <html lang="es">
 <head>
-    <link rel="stylesheet" type="text/css" href="../public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Special+Elite" rel="stylesheet">
     <title>exquisito</title>
 </head>
