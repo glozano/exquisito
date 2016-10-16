@@ -23,4 +23,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function cadaveres(){
+        return $this->hasMany('App\Cadaver');
+    }
+
+    public function personajes()
+    {
+        return $this->belongsToMany('App\Cadaver','personajes');
+    }
+
+    public function participa($cadaver){
+        $this->cadaver = $cadaver;
+        return !$this->whereHas('personajes',function ($query) {
+                $query->where('cadaver_id', $this->cadaver->id);
+            })->get()->isEmpty();
+    }
 }

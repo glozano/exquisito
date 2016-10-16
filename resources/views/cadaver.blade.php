@@ -1,72 +1,83 @@
 @extends('layouts.app')
 
 @section('header')
-<h1>{{$cadaver->titulo}}</h1>
+<h1>
+    <a href="{{route('cadaveres')}}"><</a>
+</h1>
 @endsection
 
 @section('content')
-    <div class="wrapper center container">
-        @if ($ultimoHueso)
-        <div class="wrapper center container">
-            <div id="mi-ultimo-hueso">
-                <p class="subtitle">Mi ultimo hueso:</p>
-                <div class="texto" style="visibility:hidden"><p>{{$ultimoHueso->texto}}</p></div>
-                <p class="tipeo"></p>
-            </div>
 
-            <div id="estimulo">
-                <p class="subtitle">Estimulo:</p>
-                <p>{{$estimulo->texto}}</p>
+<h1>{{$cadaver->titulo}}</h1>
+<form action="{{ url('hueso') }}" method="POST">
+    {{ csrf_field() }}
+    <div class="container">
+        <div class="hueso-viejo">
+            @if ($ultimoHueso)
+                <div id="mi-ultimo-hueso">
+                    <p class="subtitle">Mi ultimo hueso:</p>
+                    <div class="texto" style="visibility:hidden"><p>{{$ultimoHueso->texto}}</p></div>
+                    <p class="tipeo"></p>
+                </div>
+            @endif
+            @if ($estimulo)
+                <div id="estimulo">
+                    <p class="subtitle">Su ultimo estimulo:</p>
+                    <p>{{$estimulo->texto}}</p>
+                </div>
+            @endif
+        </div>
+        @if ($toca)
+        <div class="invitacion row">
+            <div class="texto col-xs-12">
+                <label for="texto" class="control-label">texto</label>
+                <br/>
+                <span class="blink typed-cursor marca pull-left">></span>
+                <textarea name="texto" id="texto" class="discrete col-xs-8"></textarea>
             </div>
+            <div class="texto col-xs-12">
+                <label for="estimulo" class="control-label">estimulo</label>
+                <br/>
+                <span class="blink typed-cursor marca pull-left">></span>
+                <input type="text" name="estimulo" id="estimulo" class="discrete col-xs-8"/>
+            </div>
+            <input type="hidden" name="cadaver" value="{{$cadaver->id}}"/>
+        </div>
+        @endif
+        @if (!$toca)
+        <div class="invitacion">
+            Espero y mientras me preparo para la mudanza
         </div>
         @endif
     </div>
-    <br/>
-    <br/>
-    <br/>
-    <div class="invitacion">
-        <form action="{{ url('hueso') }}" method="POST" class="form-horizontal">
-            {{ csrf_field() }}
-            <div class="texto">
-                <p>
-                    <label>Texto</label>
-                </p>
-                <p>
-                    <input style="display: none" name="cadaver" value="{{$cadaver->id}}"/>
-                    <span class="blink typed-cursor marca">></span>
-                    <input type="text" name="texto" id="hueso-texto" class="form-control"/>
-                </p>
-            </div>
-            <div class="texto">
-                <p>
-                    <label>Estimulo</label>
-                </p>
-                <p>
-                    <span class="blink typed-cursor marca">></span>
-                    <input type="text" name="estimulo" id="hueso-estimulo" class="form-control"/>
-                </p>
-            </div>
-            <button type="submit" class="btn btn-default">
-                <span class="">Doblar</span>
-            </button>
-        </form>
+    <div class="form-group">
+        <button type="submit" class="flechiboton">
+            <span class="">+</span>
+        </button>
     </div>
-</body>
+    <a id="ver-escena" class="iconoboton">
+        <span class="glyphicon glyphicon-eye-open"></span>
+    </a>
+</form>
 
-<div class="llave-wrapper" style="display: none">
-    <form action="{{route('escena',$cadaver->id)}}">
-        <input type="text" placeholder="llave" name="llave"/>
-        <button type="submit">abrir</button>
-    </form>
-</div>
+<form action="{{route('escena',$cadaver->id)}}" id="form-llave">
+        <div class="wrapper-clave" style="display: none;"></div>
+        <span class="input-clave"></span>
+        <input type="text"  placeholder="" class="discrete" name="llave"/>
+</form>
+
 
 <script type="text/javascript">
-    $('#ver-escena-boton').click(function(){
-        $('.llave-wrapper').toggle();
+    $('#ver-escena').click(function(){
+        $('.wrapper-clave').toggle();
+        $('.input-clave').typed({
+            strings:['llave >'],
+            showCursor: false
+        })
     });
     $("#mi-ultimo-hueso .tipeo").typed({
         stringsElement: $('#mi-ultimo-hueso .texto'),
-        typeSpeed: 0.1,
+        typeSpeed: 10,
         showCursor: false
     });
 </script>

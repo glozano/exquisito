@@ -1,82 +1,73 @@
 @extends('layouts.app')
 
+@section('header')
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<form role="form" method="POST" action="{{ url('/register') }}">
+    {{ csrf_field() }}
+    <h1 id="auto-name"></h1>
+    <div class="reg-form container">
+        <input id="name" type="text" class="form-control" name="name" style="display:none"/>
+        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} row">
+            <div class="col-md-4 col-xs-10">
+                <label for="password" class="control-label">clave</label>
+                <br/>
+                <span class="blink typed-cursor marca">
+                    >
+                </span>
+                <input id="password" type="password" class="discrete" name="password">
+                @if ($errors->has('password'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+                @endif
+            </div>
+        </div>
+        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }} row" >
+            <div class="col-md-4 col-xs-10">
+                <label for="password-confirm" class="control-label">de nuevo</label>
+                <br/>
+                <span class="blink typed-cursor marca">
+                    >
+                </span>
+                <input id="password-confirm" type="password" class="discrete" name="password_confirmation">
+                @if ($errors->has('password_confirmation'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                </span>
+                @endif
             </div>
         </div>
     </div>
-</div>
+    <a id="regenerate">
+        <span class="glyphicon glyphicon-repeat"></span>
+    </a>
+    <div class="form-group">
+        <button type="submit" class="flechiboton">
+             +
+        </button>
+    </div>
+</form>
+
+
+
+<script type="text/javascript">
+    generateName();
+    $('#regenerate').click(function(){
+        generateName();
+    });
+    function generateName(){
+        var nameList = ['Isaura','Mabel','Pablito','Virginia','Gonzalo','Guido','Ricardo','Alberto','Laura'];
+        var name = nameList[Math.floor(Math.random()*nameList.length)];
+        name += Math.floor(Math.random()*40+20);
+        $("#auto-name").typed({
+            strings: ['Hola '+name],
+            typeSpeed: 50,
+            showCursor: false
+        });
+        $('#name').val(name);
+    }
+
+</script>
 @endsection
