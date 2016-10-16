@@ -58,7 +58,37 @@
         generateName();
     });
     function generateName(){
-        var nameList = ['Isaura','Mabel','Pablito','Virginia','Gonzalo','Guido','Ricardo','Alberto','Laura'];
+        var nameList = ['Isaura',
+            'Mabel',
+            'Pablito',
+            'Virginia',
+            'Gonzalo',
+            'Guido',
+            'Ricardo',
+            'Alberto',
+            'Laura',
+            'Virginia',
+            'Silvia',
+            'Nelson',
+            'Washington',
+            'Ines',
+            'Nelly',
+            'Irma',
+            'Gladys',
+            'Flavita',
+            'Susy',
+            'Horacio',
+            'Tito',
+            'Ambrosio',
+            'JuanCarlos',
+            'Pancho',
+            'Pocho',
+            'Wilson',
+            'Roberto',
+            'Alfredo',
+            'Marcelo',
+            'ElRuben',
+            'Oscar'];
         var name = nameList[Math.floor(Math.random()*nameList.length)];
         name += Math.floor(Math.random()*40+20);
         $("#auto-name").typed({
@@ -71,3 +101,4 @@
 
 </script>
 @endsection
+
