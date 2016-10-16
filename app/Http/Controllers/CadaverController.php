@@ -46,7 +46,9 @@ class CadaverController extends Controller
                 $ultimoHueso = $hueso;
                 break;
             }
-            $estimulo = $hueso->estimulo()->first();
+            if(empty($estimulo)){
+                $estimulo = $hueso->estimulo()->first();
+            }
         }
         return view('cadaver', [
             'ultimoHueso'   => $ultimoHueso,
@@ -68,10 +70,11 @@ class CadaverController extends Controller
             $cadaver->personajes = explode(",", $request->personajes);
             foreach($cadaver->personajes as $personaje){
                 $_personaje = User::where('name',trim($personaje))->first();
+                if(empty($_personaje))
+                    return redirect()->route('nuevo');
                 $cadaver->personajes()->save($_personaje);
             }
             $cadaver->personajes()->save($user);
-
             return redirect()->route('cadaver', $cadaver->id);
         }else{
             return redirect()->route('nuevo');

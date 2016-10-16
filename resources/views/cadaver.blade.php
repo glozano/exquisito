@@ -50,11 +50,13 @@
         </div>
         @endif
     </div>
+    @if ($toca)
     <div class="form-group">
         <button type="submit" class="flechiboton">
             <span class="">+</span>
         </button>
     </div>
+    @endif
     <a id="ver-escena" class="iconoboton">
         <span class="glyphicon glyphicon-eye-open"></span>
     </a>
