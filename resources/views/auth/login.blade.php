@@ -3,7 +3,7 @@
 @section('content')
 <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
 {{ csrf_field() }}
-    <div class="container">
+    <div class="container reg-form">
         <input id="name" type="text" class="form-control" name="name" style="display:none"/>
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} row">
             <div class="col-md-4 col-xs-10">
@@ -38,7 +38,7 @@
     </div>
     <div class="form-group">
         <button type="submit" class="flechiboton">
-            >
+            entrar
         </button>
     </div>
 </form>
