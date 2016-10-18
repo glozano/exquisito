@@ -11,7 +11,7 @@
     <div class="container nuevo-cadaver">
         {{ csrf_field() }}
         <div class="field">
-            <label for="titulo" class="control-label">titulo</label>
+            <label for="titulo" class="control-label">título</label>
             <br/>
             <span class="blink typed-cursor marca pull-left">></span>
             <input type="text" name="titulo" id="cadaver-titulo" class="discrete"/>

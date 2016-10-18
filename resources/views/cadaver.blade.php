@@ -15,14 +15,14 @@
         <div class="hueso-viejo">
             @if ($ultimoHueso)
                 <div id="mi-ultimo-hueso">
-                    <p class="subtitle">Mi ultimo hueso:</p>
+                    <p class="subtitle">Mi último hueso:</p>
                     <div class="texto" style="visibility:hidden"><p>{{$ultimoHueso->texto}}</p></div>
                     <p class="tipeo"></p>
                 </div>
             @endif
             @if ($estimulo)
                 <div id="estimulo">
-                    <p class="subtitle">Su ultimo estimulo:</p>
+                    <p class="subtitle">Su último estímulo:</p>
                     <p>{{$estimulo->texto}}</p>
                 </div>
             @endif
@@ -36,7 +36,7 @@
                 <textarea name="texto" id="texto" class="discrete col-xs-8"></textarea>
             </div>
             <div class="texto col-xs-12">
-                <label for="estimulo" class="control-label">estimulo</label>
+                <label for="estimulo" class="control-label">estímulo</label>
                 <br/>
                 <span class="blink typed-cursor marca pull-left">></span>
                 <input type="text" name="estimulo" id="estimulo" class="discrete col-xs-8"/>

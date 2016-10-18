@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <h1>cadaveres</h1>
+    <h1>cadáveres</h1>
     <div class="container cadaveres">
         @foreach ($cadaveres as $cadaver)
         <p class="text">
